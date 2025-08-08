@@ -98,6 +98,7 @@
       width: 30px;
       animation: fall linear infinite;
       opacity: 0.7;
+      pointer-events: none;
     }
 
     .character {
@@ -126,6 +127,7 @@
       border-radius: 20px;
       position: relative;
       cursor: move;
+      transition: transform 0.2s ease;
     }
 
     .frame img {
@@ -133,6 +135,10 @@
       height: 100%;
       border-radius: 15px;
       object-fit: cover;
+    }
+
+    .frame.pop {
+      transform: scale(1.2);
     }
 
     @media (max-width: 500px) {
@@ -191,7 +197,6 @@
   </div>
 </div>
 
-<!-- Bunga Jatuh -->
 <script>
   function buatBungaJatuh() {
     for (let i = 0; i < 15; i++) {
@@ -209,7 +214,12 @@
     if (inputPin === "0213") {
       document.getElementById("page1").classList.add("hidden");
       document.getElementById("page2").classList.remove("hidden");
-      document.getElementById("bg-music").play();
+
+      const music = document.getElementById("bg-music");
+      music.play().catch(err => {
+        console.warn("Musik tidak bisa diputar otomatis:", err);
+      });
+
       buatBungaJatuh();
     } else {
       alert("PIN salah! Coba lagi ya 😊");
@@ -235,4 +245,14 @@
     const id = e.dataTransfer.getData("text");
     const draggable = document.getElementById(id);
     draggable.style.position = "absolute";
-    draggable.style.left = e.pageX - 
+    draggable.style.left = (e.pageX - draggable.offsetWidth / 2) + "px";
+    draggable.style.top = (e.pageY - draggable.offsetHeight / 2) + "px";
+
+    // Efek pop animasi
+    draggable.classList.add("pop");
+    setTimeout(() => draggable.classList.remove("pop"), 200);
+  });
+</script>
+
+</body>
+</html>
