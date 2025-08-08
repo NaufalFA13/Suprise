@@ -9,13 +9,11 @@
       box-sizing: border-box;
       font-family: 'Comic Sans MS', cursive, sans-serif;
     }
-
     body {
       margin: 0;
       background: linear-gradient(to top right, #ffe0f0, #f3f9ff);
       overflow-x: hidden;
     }
-
     .container {
       display: flex;
       flex-direction: column;
@@ -25,18 +23,15 @@
       padding: 20px;
       text-align: center;
     }
-
     h1, h2 {
       color: #ff69b4;
       text-shadow: 2px 2px #fff;
       animation: popUp 1.5s ease-in-out;
     }
-
     @keyframes popUp {
       0% { transform: scale(0); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
-
     input[type="password"] {
       padding: 10px;
       font-size: 1.2em;
@@ -47,7 +42,6 @@
       max-width: 300px;
       outline: none;
     }
-
     button {
       padding: 10px 20px;
       font-size: 1.2em;
@@ -58,40 +52,28 @@
       color: #fff;
       transition: 0.3s;
     }
-
     button:hover {
       background-color: #ff69b4;
     }
-
     .flower {
       width: 120px;
       animation: spin 10s infinite linear;
       margin: 20px 0;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    .hidden {
-      display: none;
-    }
-
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-
+    .hidden { display: none; }
+    .floating { animation: float 3s ease-in-out infinite; }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-15px); }
     }
-
     @keyframes fall {
       0% { transform: translateY(-100px); opacity: 1; }
       100% { transform: translateY(100vh); opacity: 0; }
     }
-
     .petal {
       position: fixed;
       top: -50px;
@@ -100,18 +82,12 @@
       opacity: 0.7;
       pointer-events: none;
     }
-
     .character {
       width: 100px;
       margin-top: 20px;
       animation: float 4s ease-in-out infinite;
     }
-
-    .page3 {
-      background-color: #fff0f5;
-      padding-top: 40px;
-    }
-
+    .page3 { background-color: #fff0f5; padding-top: 40px; }
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -119,7 +95,6 @@
       justify-content: center;
       padding: 20px;
     }
-
     .frame {
       width: 150px;
       height: 150px;
@@ -129,35 +104,43 @@
       cursor: move;
       transition: transform 0.2s ease;
     }
-
     .frame img {
       width: 100%;
       height: 100%;
       border-radius: 15px;
       object-fit: cover;
     }
-
-    .frame.pop {
-      transform: scale(1.2);
+    .frame.pop { transform: scale(1.2); }
+    /* Halaman 4 */
+    .page4 {
+      background-color: #e6f0ff;
+      padding: 30px;
     }
-
+    .video-frame {
+      width: 250px;
+      height: 444px; /* rasio 9:16 */
+      border: 6px solid #ff99cc;
+      border-radius: 25px;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     @media (max-width: 500px) {
-      h1, h2 {
-        font-size: 1.5em;
-      }
-      .flower {
-        width: 90px;
-      }
-      .frame {
-        width: 120px;
-        height: 120px;
-      }
+      h1, h2 { font-size: 1.5em; }
+      .flower { width: 90px; }
+      .frame { width: 120px; height: 120px; }
+      .video-frame { width: 200px; height: 355px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Audio -->
+<!-- Musik Latar -->
 <audio id="bg-music" loop>
   <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mp3">
 </audio>
@@ -165,7 +148,7 @@
 <!-- Halaman 1 -->
 <div class="container" id="page1">
   <h1>🌸 Selamat Datang 🌸</h1>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating" alt="Bunga Lucu"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating"/>
   <p>Masukkan PIN untuk masuk</p>
   <input type="password" id="pin" maxlength="4" placeholder="Masukkan PIN"/>
   <button onclick="cekPin()">Masuk</button>
@@ -174,14 +157,11 @@
 <!-- Halaman 2 -->
 <div class="container hidden" id="page2">
   <h2>🎉 Kamu Berhasil Masuk! 🎉</h2>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating" alt="Bunga Lucu Lagi"/>
-  <img src="https://pngimg.com/uploads/hello_kitty/hello_kitty_PNG32.png" class="character" alt="Karakter Lucu"/>
-  
-  <div class="content">
-    <p>🌼 Haii... kamu berhasil membuka halaman rahasia yang ceria! 🌼</p>
-    <p>Semoga harimu seindah bunga yang sedang mekar~</p>
-    <button onclick="bukaHalamanTiga()">Lihat Galeri Foto 🎨</button>
-  </div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating"/>
+  <img src="https://pngimg.com/uploads/hello_kitty/hello_kitty_PNG32.png" class="character"/>
+  <p>🌼 Haii... kamu berhasil membuka halaman rahasia yang ceria! 🌼</p>
+  <p>Semoga harimu seindah bunga yang sedang mekar~</p>
+  <button onclick="bukaHalamanTiga()">Lihat Galeri Foto 🎨</button>
 </div>
 
 <!-- Halaman 3 -->
@@ -189,12 +169,25 @@
   <h2>🖼️ Galeri Lucu 🐰</h2>
   <div class="gallery">
     <div class="frame" draggable="true" ondragstart="drag(event)" id="foto1">
-      <img src="https://i.pinimg.com/originals/63/ee/6c/63ee6cb4de4016efdfb3c62472b75b1d.jpg" alt="Lucu 1"/>
+      <img src="https://i.pinimg.com/originals/63/ee/6c/63ee6cb4de4016efdfb3c62472b75b1d.jpg"/>
     </div>
     <div class="frame" draggable="true" ondragstart="drag(event)" id="foto2">
-      <img src="https://i.pinimg.com/736x/6e/e0/e6/6ee0e65fc1e2b1b1e7aa9437d7adf8fc.jpg" alt="Lucu 2"/>
+      <img src="https://i.pinimg.com/736x/6e/e0/e6/6ee0e65fc1e2b1b1e7aa9437d7adf8fc.jpg"/>
     </div>
   </div>
+  <button onclick="bukaHalamanEmpat()">Lanjut ke Halaman Video 🎬</button>
+</div>
+
+<!-- Halaman 4 -->
+<div class="container hidden page4" id="page4">
+  <h2>🎥 Video Lucu Spesial Untukmu 💖</h2>
+  <div class="video-frame">
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
+    </video>
+  </div>
+  <p>✨ Semoga video ini bikin kamu senyum terus! ✨</p>
 </div>
 
 <script>
@@ -208,38 +201,29 @@
       document.body.appendChild(petal);
     }
   }
-
   function cekPin() {
     const inputPin = document.getElementById("pin").value;
     if (inputPin === "0213") {
       document.getElementById("page1").classList.add("hidden");
       document.getElementById("page2").classList.remove("hidden");
-
-      const music = document.getElementById("bg-music");
-      music.play().catch(err => {
-        console.warn("Musik tidak bisa diputar otomatis:", err);
-      });
-
+      document.getElementById("bg-music").play().catch(()=>{});
       buatBungaJatuh();
     } else {
       alert("PIN salah! Coba lagi ya 😊");
     }
   }
-
   function bukaHalamanTiga() {
     document.getElementById("page2").classList.add("hidden");
     document.getElementById("page3").classList.remove("hidden");
   }
-
-  // Drag logic
+  function bukaHalamanEmpat() {
+    document.getElementById("page3").classList.add("hidden");
+    document.getElementById("page4").classList.remove("hidden");
+  }
   function drag(event) {
     event.dataTransfer.setData("text", event.target.id);
   }
-
-  document.addEventListener("dragover", function(e) {
-    e.preventDefault();
-  });
-
+  document.addEventListener("dragover", e => e.preventDefault());
   document.addEventListener("drop", function(e) {
     e.preventDefault();
     const id = e.dataTransfer.getData("text");
@@ -247,8 +231,6 @@
     draggable.style.position = "absolute";
     draggable.style.left = (e.pageX - draggable.offsetWidth / 2) + "px";
     draggable.style.top = (e.pageY - draggable.offsetHeight / 2) + "px";
-
-    // Efek pop animasi
     draggable.classList.add("pop");
     setTimeout(() => draggable.classList.remove("pop"), 200);
   });
