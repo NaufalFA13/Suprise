@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website Lucu</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(to top right, #ffe0f0, #f3f9ff);
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      color: #ff69b4;
+      text-shadow: 2px 2px #fff;
+      animation: popUp 1.5s ease-in-out;
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    input[type="password"] {
+      padding: 10px;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: 2px solid #ff99cc;
+      margin: 15px 0;
+      width: 100%;
+      max-width: 300px;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ffb6c1;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    .flower {
+      width: 120px;
+      animation: spin 10s infinite linear;
+      margin: 20px 0;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100px); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .petal {
+      position: fixed;
+      top: -50px;
+      width: 30px;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    .character {
+      width: 100px;
+      margin-top: 20px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .page3 {
+      background-color: #fff0f5;
+      padding-top: 40px;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .frame {
+      width: 150px;
+      height: 150px;
+      border: 5px dashed #ff69b4;
+      border-radius: 20px;
+      position: relative;
+      cursor: move;
+    }
+
+    .frame img {
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 500px) {
+      h1, h2 {
+        font-size: 1.5em;
+      }
+      .flower {
+        width: 90px;
+      }
+      .frame {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Audio -->
+<audio id="bg-music" loop>
+  <source src="https://www.fesliyanstudios.com/play-mp3/387" type="audio/mp3">
+</audio>
+
+<!-- Halaman 1 -->
+<div class="container" id="page1">
+  <h1>🌸 Selamat Datang 🌸</h1>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating" alt="Bunga Lucu"/>
+  <p>Masukkan PIN untuk masuk</p>
+  <input type="password" id="pin" maxlength="4" placeholder="Masukkan PIN"/>
+  <button onclick="cekPin()">Masuk</button>
+</div>
+
+<!-- Halaman 2 -->
+<div class="container hidden" id="page2">
+  <h2>🎉 Kamu Berhasil Masuk! 🎉</h2>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png" class="flower floating" alt="Bunga Lucu Lagi"/>
+  <img src="https://pngimg.com/uploads/hello_kitty/hello_kitty_PNG32.png" class="character" alt="Karakter Lucu"/>
+  
+  <div class="content">
+    <p>🌼 Haii... kamu berhasil membuka halaman rahasia yang ceria! 🌼</p>
+    <p>Semoga harimu seindah bunga yang sedang mekar~</p>
+    <button onclick="bukaHalamanTiga()">Lihat Galeri Foto 🎨</button>
+  </div>
+</div>
+
+<!-- Halaman 3 -->
+<div class="container hidden page3" id="page3">
+  <h2>🖼️ Galeri Lucu 🐰</h2>
+  <div class="gallery">
+    <div class="frame" draggable="true" ondragstart="drag(event)" id="foto1">
+      <img src="https://i.pinimg.com/originals/63/ee/6c/63ee6cb4de4016efdfb3c62472b75b1d.jpg" alt="Lucu 1"/>
+    </div>
+    <div class="frame" draggable="true" ondragstart="drag(event)" id="foto2">
+      <img src="https://i.pinimg.com/736x/6e/e0/e6/6ee0e65fc1e2b1b1e7aa9437d7adf8fc.jpg" alt="Lucu 2"/>
+    </div>
+  </div>
+</div>
+
+<!-- Bunga Jatuh -->
+<script>
+  function buatBungaJatuh() {
+    for (let i = 0; i < 15; i++) {
+      const petal = document.createElement("img");
+      petal.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Flower_icon.svg/1024px-Flower_icon.svg.png";
+      petal.className = "petal";
+      petal.style.left = Math.random() * window.innerWidth + "px";
+      petal.style.animationDuration = (3 + Math.random() * 5) + "s";
+      document.body.appendChild(petal);
+    }
+  }
+
+  function cekPin() {
+    const inputPin = document.getElementById("pin").value;
+    if (inputPin === "0213") {
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+      document.getElementById("bg-music").play();
+      buatBungaJatuh();
+    } else {
+      alert("PIN salah! Coba lagi ya 😊");
+    }
+  }
+
+  function bukaHalamanTiga() {
+    document.getElementById("page2").classList.add("hidden");
+    document.getElementById("page3").classList.remove("hidden");
+  }
+
+  // Drag logic
+  function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  document.addEventListener("dragover", function(e) {
+    e.preventDefault();
+  });
+
+  document.addEventListener("drop", function(e) {
+    e.preventDefault();
+    const id = e.dataTransfer.getData("text");
+    const draggable = document.getElementById(id);
+    draggable.style.position = "absolute";
+    draggable.style.left = e.pageX - 
